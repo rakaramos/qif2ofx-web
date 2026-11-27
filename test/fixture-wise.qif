@@ -1,0 +1,20 @@
+!Type:Bank
+D25/11/2026
+T-12.50
+PTesco Stores
+MCard transaction of 12.50 EUR issued by Tesco
+^
+D25/11/2026
+T-12.50
+PTesco Stores
+MCard transaction of 12.50 EUR issued by Tesco
+^
+D03/11/2026
+T1,250.00
+PAcme & Sons <Payroll>
+MReceived money from Acme
+^
+D04/11/2026
+T-3.20
+PCafé Lisboa
+^

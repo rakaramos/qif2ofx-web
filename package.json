@@ -1,0 +1,12 @@
+{
+  "name": "qif2ofx-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Convert QIF statements (for example Wise exports) to OFX in the browser.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve@14.2.4 site"
+  },
+  "license": "MIT"
+}
