@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QIF to OFX</title>
+  <meta name="description" content="Convert QIF bank statements (for example from Wise) to OFX in your browser. Files never leave your device.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>QIF to OFX</h1>
+      <p class="lede">Convert a QIF statement (for example a Wise export) to OFX 1.0.2.
+        The conversion runs in your browser. Your file is not uploaded.</p>
+    </header>
+
+    <label id="drop" class="drop" for="file">
+      <input id="file" type="file" accept=".qif,text/plain">
+      <span id="drop-text"><strong>Choose a .qif file</strong> or drop it here</span>
+    </label>
+
+    <fieldset class="options">
+      <legend>Options</legend>
+      <label>Currency
+        <input id="currency" value="EUR" maxlength="3" autocomplete="off" spellcheck="false">
+      </label>
+      <label>Account type
+        <select id="acctType">
+          <option value="">Auto</option>
+          <option value="CHECKING">Checking</option>
+          <option value="SAVINGS">Savings</option>
+          <option value="CREDITCARD">Credit card</option>
+        </select>
+      </label>
+      <label>Date format
+        <select id="dateFormat">
+          <option value="auto">Auto</option>
+          <option value="dmy">Day/Month/Year</option>
+          <option value="mdy">Month/Day/Year</option>
+          <option value="ymd">Year-Month-Day</option>
+        </select>
+      </label>
+      <label>Account ID <span class="hint">optional</span>
+        <input id="accountId" placeholder="WISE-EUR" autocomplete="off">
+      </label>
+      <label>Closing balance <span class="hint">optional</span>
+        <input id="balance" inputmode="decimal" placeholder="Sum of transactions" autocomplete="off">
+      </label>
+    </fieldset>
+
+    <section id="result" hidden>
+      <div class="summary">
+        <p id="summary"></p>
+        <button id="download" type="button">Download OFX</button>
+      </div>
+      <p id="warnings" class="warning" hidden></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Payee</th><th>Memo</th><th class="num">Amount</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <footer>
+      <details>
+        <summary>Notes</summary>
+        <ul>
+          <li>Wise exports one statement per currency. Convert each file on its own and set its currency.</li>
+          <li>QIF has no transaction IDs. Each ID is a hash of date, amount, payee and memo, so importing the same file twice gives no duplicates.</li>
+          <li>Auto date format uses day first when every date is ambiguous (like 03/04). Pick Month/Day/Year if your file uses US dates.</li>
+          <li>Categories and splits have no place in an OFX bank statement, so the converter drops them.</li>
+        </ul>
+      </details>
+    </footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
